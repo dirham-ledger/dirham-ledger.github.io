@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dirham — دفتر حساباتك وديونك على هاتفك | تحميل APK</title>
+<meta name="description" content="Dirham تطبيق أندرويد لتسجيل الديون والحسابات مع العملاء والتجار بعدة عملات، وكشوف حساب PDF، ونسخ احتياطي، وقفل بالبصمة. حمّل APK مجاناً وجرّبه 30 يوماً.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A; --paper:#F6F6F8; --white:#fff; --muted:#6B6B6B; --line:#E4E4E7;
+  --green:#4ADE80; --green-d:#15803D; --red:#FF3B30; --violet:#6C63FF;
+  --font:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:auto;padding:0 20px}
+.num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums}
+
+/* ───── الشريط العلوي ───── */
+header{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:#fff;text-decoration:none;direction:ltr}
+.logo i{width:34px;height:34px;border-radius:10px;background:var(--green);color:var(--ink);display:grid;place-items:center;font-style:normal;font-weight:700}
+header nav a{color:#ffffffb3;text-decoration:none;font-size:15px;margin-inline-start:22px}
+header nav a:hover{color:#fff}
+
+/* ───── الواجهة الرئيسية ───── */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden;padding:130px 0 90px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;pointer-events:none}
+.hero::before{width:520px;height:520px;background:var(--violet);top:-200px;left:-120px}
+.hero::after{width:460px;height:460px;background:var(--green);bottom:-240px;right:10%;opacity:.28}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.25;font-weight:700;letter-spacing:-.5px}
+.lead{margin-top:18px;font-size:19px;color:#ffffffbf;max-width:30em}
+.dl{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--green);color:var(--ink);font:700 20px var(--font);padding:16px 30px;border-radius:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 10px 30px #4ade8040}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px #4ade8066}
+.btn svg{width:24px;height:24px}
+.meta{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#ffffff99}
+.meta b{display:block;color:#fff;font-size:16px;font-weight:600}
+.note{margin-top:20px;font-size:14px;color:#ffffff80}
+
+/* ───── الهاتف التفاعلي ───── */
+.phone{justify-self:center;width:290px;background:#18181b;border-radius:42px;padding:10px;box-shadow:0 40px 80px #0009,inset 0 0 0 2px #333}
+.screen{background:#fff;color:var(--ink);border-radius:33px;overflow:hidden;min-height:540px}
+.s-top{background:var(--ink);color:#fff;padding:26px 20px 20px;border-radius:0 0 26px 26px}
+.s-top small{color:#ffffff99;font-size:12.5px}
+.s-bal{font-size:34px;font-weight:700;line-height:1.3;margin:2px 0}
+.s-state{display:inline-block;font-size:12px;padding:1px 10px;border-radius:99px;background:#4ade8026;color:var(--green)}
+.cur{display:flex;gap:6px;margin-top:14px}
+.cur button{flex:1;font:600 12.5px var(--font);padding:6px 0;border-radius:10px;border:1px solid #ffffff2e;background:transparent;color:#ffffffb3;cursor:pointer}
+.cur button[aria-pressed=true]{background:#fff;color:var(--ink);border-color:#fff}
+.chips{display:flex;gap:8px;padding:16px 16px 6px;font-size:12.5px}
+.chips span{padding:3px 12px;border-radius:99px;background:#F1F1F3;color:var(--muted)}
+.chips span:first-child{background:var(--ink);color:#fff}
+.row{display:flex;align-items:center;gap:11px;padding:11px 18px;border-bottom:1px solid #f0f0f2}
+.av{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.row div:nth-child(2){flex:1;font-size:14px;font-weight:600;line-height:1.4}
+.row small{display:block;font-weight:400;color:var(--muted);font-size:11.5px}
+.amt{font-weight:700;font-size:14px}
+.pos{color:var(--green-d)} .neg{color:var(--red)}
+.fab{position:relative;height:0}
+.fab i{position:absolute;bottom:-70px;left:18px;width:50px;height:50px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;font:300 28px/1 var(--font);font-style:normal}
+
+/* ───── الأقسام ───── */
+section{padding:84px 0}
+h2{font-size:clamp(26px,3.6vw,38px);line-height:1.35;font-weight:700;max-width:18em}
+.sub{margin-top:10px;color:var(--muted);font-size:17px;max-width:36em}
+
+/* المزايا كدفتر حسابات: صفوف لا بطاقات */
+.ledger{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ledger div{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:22px 28px;border-bottom:1px solid var(--line);align-items:baseline}
+.ledger div:last-child{border:0}
+.ledger dt{font-weight:700;font-size:18px}
+.ledger dd{color:#3f3f46}
+
+.band{background:#fff;border-block:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+ol.steps{margin-top:30px;list-style:none;padding:0;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:0 62px 24px 0}
+ol.steps li::before{content:counter(s);position:absolute;right:0;top:0;width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700}
+ol.steps li:not(:last-child)::after{content:"";position:absolute;right:20px;top:46px;bottom:4px;width:2px;background:var(--line)}
+ol.steps b{display:block;font-size:18px}
+ol.steps span{color:var(--muted)}
+.warn{margin-top:6px;background:#FFF6E5;border:1px solid #F5D9A0;border-radius:14px;padding:16px 20px;font-size:15px;color:#6b4a00}
+.trial{background:var(--ink);color:#fff;border-radius:22px;padding:34px;margin-top:30px}
+.trial h3{font-size:22px}
+.trial p{color:#ffffffb3;margin-top:8px}
+.bar{height:8px;border-radius:9px;background:#ffffff26;margin-top:20px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--green)}
+.trial small{display:flex;justify-content:space-between;margin-top:8px;color:#ffffff80}
+
+details{border-bottom:1px solid var(--line);padding:18px 0}
+details summary{cursor:pointer;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+details summary::after{content:"+";font-size:24px;line-height:1;color:var(--muted);transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:10px;color:#3f3f46;max-width:44em}
+
+.cta{background:var(--ink);color:#fff;text-align:center;padding:80px 0}
+.cta h2{margin:auto}
+.cta .btn{margin-top:28px}
+.cta .links{margin-top:26px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+.cta .links a{color:#ffffffb3;text-decoration:none;border-bottom:1px solid #ffffff4d}
+footer{background:var(--ink);color:#ffffff80;font-size:14px;text-align:center;padding:0 20px calc(30px + env(safe-area-inset-bottom,0))}
+
+@media(max-width:860px){
+  .hero{padding:110px 0 70px}
+  .hero .wrap,.cols{grid-template-columns:1fr}
+  .phone{order:2}
+  .ledger div{grid-template-columns:1fr;gap:4px}
+  header nav{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><i>D</i>Dirham</a>
+    <nav><a href="#features">المزايا</a><a href="#install">طريقة التثبيت</a><a href="#faq">أسئلة شائعة</a></nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>كل ديونك وحساباتك في دفتر واحد على هاتفك</h1>
+      <p class="lead">سجّل ما لك وما عليك مع العملاء والتجار، بأكثر من عملة، واطبع كشف الحساب أو أرسله بنقرة واحدة.</p>
+      <div class="dl">
+        <a class="btn" id="dlBtn" href="dirham.apk" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20h16"/></svg>
+          تحميل التطبيق
+        </a>
+        <div class="meta">
+          <span>الإصدار<b class="num" id="mVer">1.0</b></span>
+          <span>الحجم<b class="num" id="mSize">—</b></span>
+          <span>النظام<b>أندرويد</b></span>
+        </div>
+      </div>
+      <p class="note">مجاني للتجربة 30 يوماً — بياناتك محفوظة كاملة بعد انتهائها.</p>
+    </div>
+
+    <!-- معاينة تفاعلية: بدّل العملة لترى صافي الحساب يتغير -->
+    <div class="phone" aria-label="معاينة للتطبيق">
+      <div class="screen">
+        <div class="s-top">
+          <small>صافي حسابك</small>
+          <div class="s-bal num" id="bal">1,248,500</div>
+          <span class="s-state" id="state">الباقي لك</span>
+          <div class="cur" role="group" aria-label="العملة">
+            <button aria-pressed="true" data-c="YER">ر.ي</button>
+            <button aria-pressed="false" data-c="SAR">ر.س</button>
+            <button aria-pressed="false" data-c="USD">$</button>
+          </div>
+        </div>
+        <div class="chips"><span>الكل</span><span>العملاء</span><span>التجار</span></div>
+        <div id="rows"></div>
+        <div class="fab"><i aria-hidden="true">+</i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>مصمَّم لمن يتعامل بالدَّين كل يوم</h2>
+    <p class="sub">أضف العملية، والتطبيق يحسب الرصيد ويفرزه لك: الباقي لك أو الباقي عليك.</p>
+    <dl class="ledger">
+      <div><dt>عملاء وتجار</dt><dd>صنّف حساباتك إلى عملاء وتجار وعام، أو أنشئ تصنيفاتك الخاصة، وابحث عن أي حساب بالاسم.</dd></div>
+      <div><dt>عدة عملات</dt><dd>الريال اليمني والريال السعودي والدولار، وتنتقل بينها بنقرة ويظهر لك صافي كل عملة على حدة.</dd></div>
+      <div><dt>صورة السند</dt><dd>أرفق صورة الفاتورة أو السند من الكاميرا أو المعرض مع كل عملية لتبقى الأدلة مع القيد.</dd></div>
+      <div><dt>كشف حساب PDF</dt><dd>اطبع كشف حساب العميل أو شاركه، مع اسمك وشعارك وبياناتك في رأس الكشف.</dd></div>
+      <div><dt>تحويل الرصيد</dt><dd>انقل رصيد حساب إلى حساب آخر عند الحاجة، دون إعادة تسجيل العمليات.</dd></div>
+      <div><dt>تقارير</dt><dd>نظرة على حركة الديون خلال فترة تختارها: أسبوع، شهر، أو سنة.</dd></div>
+      <div><dt>Excel</dt><dd>استورد عملياتك من ملف Excel، أو صدّر كشف الحساب وأرصدة الحسابات إلى ملف.</dd></div>
+      <div><dt>نسخ احتياطي</dt><dd>انسخ بياناتك إلى جهازك أو إلى مجلد خاص في Google Drive. لا يصل شيء منها إلى المطوّر.</dd></div>
+      <div><dt>قفل وحماية</dt><dd>اقفل التطبيق برمز، وافتحه بالبصمة أو بالوجه إن كان جهازك يدعمهما.</dd></div>
+      <div><dt>سلة المحذوفات</dt><dd>ما تحذفه بالخطأ لا يضيع: استعده من السلة متى شئت.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="band" id="install">
+  <div class="wrap cols">
+    <div>
+      <h2>التثبيت في دقيقة</h2>
+      <p class="sub">التطبيق يُحمَّل كملف APK مباشرة من هذا الموقع.</p>
+      <ol class="steps">
+        <li><b>حمّل الملف</b><span>اضغط «تحميل التطبيق» وانتظر انتهاء التنزيل.</span></li>
+        <li><b>اسمح بالتثبيت</b><span>عند فتح الملف يطلب أندرويد السماح لمتصفحك بتثبيت التطبيقات. فعّل الخيار ثم ارجع.</span></li>
+        <li><b>ثبّت وافتح</b><span>اضغط «تثبيت» ثم «فتح». ستجد جولة قصيرة تشرح الشاشات.</span></li>
+      </ol>
+      <p class="warn">يظهر تنبيه من أندرويد لأن التطبيق لا يأتي من متجر Google Play. هذا طبيعي مع أي ملف APK، ولا تحمّل التطبيق إلا من هذا الموقع.</p>
+    </div>
+    <div>
+      <div class="trial">
+        <h3>جرّبه 30 يوماً بكل المزايا</h3>
+        <p>بعد انتهاء التجربة تبقى بياناتك كما هي. تفعّل التطبيق بمفتاح من المطوّر وتكمل من حيث توقفت.</p>
+        <div class="bar" aria-hidden="true"><i></i></div>
+        <small><span>اليوم 1</span><span>اليوم 30</span></small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>أسئلة شائعة</h2>
+    <div style="margin-top:28px;max-width:760px">
+      <details><summary>هل بياناتي آمنة؟</summary><p>بياناتك محفوظة على جهازك، ويمكنك قفل التطبيق برمز أو ببصمة. النسخ الاحتياطي على Google Drive يذهب إلى حسابك أنت فقط.</p></details>
+      <details><summary>ماذا يحدث عند انتهاء التجربة؟</summary><p>لا تُحذف أي بيانات. يطلب التطبيق تفعيلاً بمفتاح، وبعد إدخاله تكمل عملك كما كنت.</p></details>
+      <details><summary>كيف أفعّل التطبيق؟</summary><p>من شاشة التفعيل أرسل رمز جهازك إلى المطوّر عبر واتساب، ثم الصق المفتاح الذي يصلك.</p></details>
+      <details><summary>هل أستطيع نقل بياناتي إلى هاتف جديد؟</summary><p>نعم. خذ نسخة احتياطية من هاتفك القديم، ثم استعدها بعد تثبيت التطبيق على الهاتف الجديد.</p></details>
+      <details><summary>هل يظهر إعلان داخل التطبيق؟</summary><p>قد تظهر إعلانات، ويوجد خيار داخل التطبيق لإزالتها.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>ابدأ دفترك الآن</h2>
+    <a class="btn" id="dlBtn2" href="dirham.apk" download>تحميل التطبيق</a>
+    <div class="links">
+      <span id="waLinks" style="display:contents"></span>
+      <a id="tg" href="#" rel="noopener">تواصل عبر تيليجرام</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><p>© <span id="yr"></span> Dirham. جميع الحقوق محفوظة.</p></footer>
+
+<script>
+/* ===== إعدادات الموقع: عدّل هنا فقط ===== */
+const CONFIG = {
+  apkUrl: "dirham.apk",        // مسار ملف الـ APK على استضافتك
+  version: "1.0",             // رقم الإصدار
+  sizeFallback: "",           // مثال: "24 MB" (يُحسب تلقائياً إن وُجد الملف)
+  whatsapps: ["967772717677","967779309090"],   // أرقام واتساب بصيغة دولية بدون +
+  telegram: ""                // رابط تيليجرام (اتركه فارغاً لإخفائه)
+};
+
+/* ===== تعبئة البيانات ===== */
+document.querySelectorAll("#dlBtn,#dlBtn2").forEach(a=>a.href=CONFIG.apkUrl);
+document.getElementById("mVer").textContent = CONFIG.version;
+document.getElementById("yr").textContent = new Date().getFullYear();
+const tg=document.getElementById("tg");
+document.getElementById("waLinks").innerHTML=CONFIG.whatsapps.map(n=>
+  `<a href="https://wa.me/${n}" rel="noopener">واتساب <span class="num">+${n}</span></a>`).join("");
+CONFIG.telegram ? tg.href=CONFIG.telegram : tg.remove();
+
+/* حجم الملف تلقائياً من الخادم */
+const sizeEl=document.getElementById("mSize");
+sizeEl.textContent=CONFIG.sizeFallback||"—";
+fetch(CONFIG.apkUrl,{method:"HEAD"}).then(r=>{
+  const n=+r.headers.get("content-length");
+  if(r.ok&&n) sizeEl.textContent=(n/1048576).toFixed(1)+" MB";
+}).catch(()=>{});
+
+/* ===== معاينة التطبيق (بيانات توضيحية فقط) ===== */
+const DATA={
+  YER:{sym:"ر.ي",bal:1248500,rows:[["أحمد المقطري","عميل",320000],["مؤسسة النور","تاجر",-185000],["سالم باعباد","عميل",540000],["محمد العولقي","عميل",-60000]]},
+  SAR:{sym:"ر.س",bal:3120,rows:[["أحمد المقطري","عميل",800],["مؤسسة النور","تاجر",-460],["سالم باعباد","عميل",1350],["محمد العولقي","عميل",-150]]},
+  USD:{sym:"$",bal:830,rows:[["أحمد المقطري","عميل",210],["مؤسسة النور","تاجر",-120],["سالم باعباد","عميل",360],["محمد العولقي","عميل",-40]]}
+};
+const tints=["#E3F6EA","#E0F4F8","#FDF0DC","#EDEBFF"];
+const fmt=n=>Math.abs(n).toLocaleString("en-US");
+function render(c){
+  const d=DATA[c];
+  document.getElementById("bal").textContent=fmt(d.bal)+" "+d.sym;
+  document.getElementById("rows").innerHTML=d.rows.map((r,i)=>
+    `<div class="row"><div class="av" style="background:${tints[i]}">${r[0][0]}</div>
+     <div>${r[0]}<small>${r[1]}</small></div>
+     <div class="amt num ${r[2]>0?"pos":"neg"}">${fmt(r[2])} ${d.sym}</div></div>`).join("");
+}
+document.querySelectorAll(".cur button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".cur button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  render(b.dataset.c);
+}));
+render("YER");
+</script>
+</body>
+</html>
